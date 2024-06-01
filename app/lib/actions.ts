@@ -45,10 +45,11 @@ export async function updateInvoice(id: string, formData: FormData) {
     });
 
     const amountInCents = amount * 100;
+    const date = new Date().toISOString().split('T')[0];
 
     await sql`
         UPDATE invoices
-        SET customer_id=${customerId}, amount=${amountInCents}, status=${status}
+        SET customer_id=${customerId}, amount=${amountInCents}, status=${status}, date=${date}
         WHERE id=${id}
     `;
 
